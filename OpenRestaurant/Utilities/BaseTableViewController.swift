@@ -31,7 +31,7 @@ class BaseTableViewController<Cell: BaseTableViewCell<Item>, Item>: UITableViewC
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let identifier = NSStringFromClass(Cell.self)
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! Cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? Cell else { return UITableViewCell() }
         cell.settingModel = items[indexPath.row]
         return cell
     }
